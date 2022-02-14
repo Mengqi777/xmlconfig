@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property>
+        <name>name1</name>
+        <value>value1</value>
+        <tag>tag1,tag2</tag>
+        <description>demo1</description>
+    </property>
+</configuration>
