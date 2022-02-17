@@ -1,4 +1,4 @@
-module github/Mengqi777/xmlconfig
+module github.com/Mengqi777/xmlconfig
 
 go 1.17
 
