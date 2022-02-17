@@ -217,3 +217,54 @@ func TestXmlConfig_WriteXmlFile(t *testing.T) {
 		})
 	}
 }
+
+func Test_property_Equal(t *testing.T) {
+	type fields struct {
+		XMLName     xml.Name
+		Name        string
+		Value       string
+		Tag         string
+		Description string
+	}
+	type args struct {
+		o *property
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   bool
+	}{
+		// TODO: Add test cases.
+		{
+			name: "",
+			fields: fields{
+				XMLName:     xml.Name{},
+				Name:        "name",
+				Value:       "value",
+				Tag:         "tag",
+				Description: "desc",
+			},
+			args: args{o: &property{
+				XMLName:     xml.Name{},
+				Name:        "name",
+				Value:       "value",
+				Tag:         "tag",
+				Description: "desc",
+			}},
+			want: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			p := &property{
+				XMLName:     tt.fields.XMLName,
+				Name:        tt.fields.Name,
+				Value:       tt.fields.Value,
+				Tag:         tt.fields.Tag,
+				Description: tt.fields.Description,
+			}
+			assert.Equalf(t, tt.want, p.Equal(tt.args.o), "Equal(%v)", tt.args.o)
+		})
+	}
+}

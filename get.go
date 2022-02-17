@@ -152,6 +152,35 @@ func (x *XmlConfig) GetTrimmedString(key string, defaultString string) string {
 	}
 }
 
+// GetStrings TODO
+func (x *XmlConfig) GetStrings(key, sep string) []string {
+	if len(sep) == 0 {
+		sep = ","
+	}
+	s := x.GetString(key, "")
+	if len(s) == 0 {
+		return []string{}
+	}
+	return strings.Split(s, sep)
+}
+
+// GetTrimmedStrings TODO
+func (x *XmlConfig) GetTrimmedStrings(key, sep string) []string {
+	if len(sep) == 0 {
+		sep = ","
+	}
+	s := x.GetString(key, "")
+	if len(s) == 0 {
+		return []string{}
+	}
+	tmpArr := strings.Split(s, sep)
+	var arr []string
+	for i := range tmpArr {
+		arr = append(arr, strings.TrimSpace(tmpArr[i]))
+	}
+	return arr
+}
+
 // GetPropsWithPrefix TODO
 func (x *XmlConfig) GetPropsWithPrefix(prefix string) map[string]string {
 	props := make(map[string]string)

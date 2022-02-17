@@ -812,3 +812,73 @@ func TestXmlConfig_Get(t *testing.T) {
 		})
 	}
 }
+
+func TestXmlConfig_GetTrimmedStrings(t *testing.T) {
+	type fields struct {
+		configurations map[string]*property
+	}
+	type args struct {
+		key string
+		sep string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   []string
+	}{
+		// TODO: Add test cases.
+		{
+			name:   "获取strings",
+			fields: fields{configurations: newCase(" t1, t2 ,t3 ")},
+			args:   args{"name1", ","},
+			want:   []string{"t1", "t2", "t3"},
+		},
+		{
+			name:   "获取strings",
+			fields: fields{configurations: newCase("t1,t")},
+			args:   args{"name2", ","},
+			want:   []string{},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			x := &XmlConfig{
+				configurations: tt.fields.configurations,
+			}
+			assert.Equalf(t, tt.want, x.GetTrimmedStrings(tt.args.key, tt.args.sep), "GetTrimmedStrings(%v, %v)", tt.args.key, tt.args.sep)
+		})
+	}
+}
+
+func TestXmlConfig_GetStrings(t *testing.T) {
+	type fields struct {
+		configurations map[string]*property
+	}
+	type args struct {
+		key string
+		sep string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   []string
+	}{
+		// TODO: Add test cases.
+		{
+			name:   "获取strings",
+			fields: fields{configurations: newCase("t1,t2,t3")},
+			args:   args{"name1", ","},
+			want:   []string{"t1", "t2", "t3"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			x := &XmlConfig{
+				configurations: tt.fields.configurations,
+			}
+			assert.Equalf(t, tt.want, x.GetStrings(tt.args.key, tt.args.sep), "GetStrings(%v, %v)", tt.args.key, tt.args.sep)
+		})
+	}
+}
