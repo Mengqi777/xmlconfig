@@ -56,8 +56,8 @@ func (p *property) String() string {
 }
 
 // Equal TODO
-func (p *property) Equal() bool {
-	return false
+func (p *property) Equal(o *property) bool {
+	return p.Name == o.Name && p.Value == o.Value && p.Tag == o.Tag
 }
 
 // XmlConfig TODO
