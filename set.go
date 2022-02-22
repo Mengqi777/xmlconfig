@@ -29,10 +29,10 @@ import (
 
 // SetString TODO
 func (x *XmlConfig) SetString(key string, value string) {
-	if _, ok := x.Configurations[key]; ok {
-		x.Configurations[key].Value = value
+	if _, ok := x.configurations[key]; ok {
+		x.configurations[key].Value = value
 	} else {
-		x.Configurations[key] = &property{
+		x.configurations[key] = &property{
 			XMLName:     xml.Name{Local: "property"},
 			Name:        key,
 			Value:       value,
@@ -63,14 +63,14 @@ func (x *XmlConfig) SetUint(key string, value uint64) {
 
 // SetIfUnset TODO
 func (x *XmlConfig) SetIfUnset(key string, value string) {
-	if _, ok := x.Configurations[key]; !ok {
-		fmt.Println(x.Configurations[key])
+	if _, ok := x.configurations[key]; !ok {
+		fmt.Println(x.configurations[key])
 		x.SetString(key, value)
 	}
 }
 
 func (x *XmlConfig) unset(key string) {
-	if _, ok := x.Configurations[key]; ok {
-		delete(x.Configurations, key)
+	if _, ok := x.configurations[key]; ok {
+		delete(x.configurations, key)
 	}
 }

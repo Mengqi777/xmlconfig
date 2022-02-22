@@ -85,7 +85,7 @@ func TestXmlConfig_GetBool(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			assert.Equalf(t, tt.want, x.GetBool(tt.args.key, tt.args.defaultBool), "GetBool(%v, %v)", tt.args.key, tt.args.defaultBool)
 		})
@@ -111,7 +111,7 @@ func TestXmlConfig_GetConfigKeys(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			assert.Equalf(t, tt.want, x.GetConfigKeys(), "GetConfigKeys()")
 		})
@@ -173,7 +173,7 @@ func TestXmlConfig_GetInt(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetInt(tt.args.key, tt.args.defaultInt)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetInt(%v, %v)", tt.args.key, tt.args.defaultInt)) {
@@ -222,7 +222,7 @@ func TestXmlConfig_GetInt16(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetInt16(tt.args.key, tt.args.defaultInt16)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetInt16(%v, %v)", tt.args.key, tt.args.defaultInt16)) {
@@ -271,7 +271,7 @@ func TestXmlConfig_GetInt32(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetInt32(tt.args.key, tt.args.defaultInt32)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetInt32(%v, %v)", tt.args.key, tt.args.defaultInt32)) {
@@ -320,7 +320,7 @@ func TestXmlConfig_GetInt64(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetInt64(tt.args.key, tt.args.defaultInt64)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetInt64(%v, %v)", tt.args.key, tt.args.defaultInt64)) {
@@ -369,7 +369,7 @@ func TestXmlConfig_GetInt8(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetInt8(tt.args.key, tt.args.defaultInt8)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetInt8(%v, %v)", tt.args.key, tt.args.defaultInt8)) {
@@ -406,7 +406,7 @@ func TestXmlConfig_GetPropsWithPrefix(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			assert.Equalf(t, tt.want, x.GetPropsWithPrefix(tt.args.prefix), "GetPropsWithPrefix(%v)", tt.args.prefix)
 		})
@@ -444,7 +444,7 @@ func TestXmlConfig_GetString(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			assert.Equalf(t, tt.want, x.GetString(tt.args.key, tt.args.defaultString), "GetString(%v, %v)", tt.args.key, tt.args.defaultString)
 		})
@@ -482,7 +482,7 @@ func TestXmlConfig_GetTrimmedString(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			x.SetString("name1", "  value1  ")
 			assert.Equalf(t, tt.want, x.GetTrimmedString(tt.args.key, tt.args.defaultString), "GetTrimmedString(%v, %v)", tt.args.key, tt.args.defaultString)
@@ -537,7 +537,7 @@ func TestXmlConfig_GetUint(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetUint(tt.args.key, tt.args.defaultUint)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetUint(%v, %v)", tt.args.key, tt.args.defaultUint)) {
@@ -595,7 +595,7 @@ func TestXmlConfig_GetUint16(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetUint16(tt.args.key, tt.args.defaultUint16)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetUint16(%v, %v)", tt.args.key, tt.args.defaultUint16)) {
@@ -653,7 +653,7 @@ func TestXmlConfig_GetUint32(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetUint32(tt.args.key, tt.args.defaultUint32)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetUint32(%v, %v)", tt.args.key, tt.args.defaultUint32)) {
@@ -711,7 +711,7 @@ func TestXmlConfig_GetUint64(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetUint64(tt.args.key, tt.args.defaultUint64)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetUint64(%v, %v)", tt.args.key, tt.args.defaultUint64)) {
@@ -769,7 +769,7 @@ func TestXmlConfig_GetUint8(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			got, err := x.GetUint8(tt.args.key, tt.args.defaultUint8)
 			if !tt.wantErr(t, err, fmt.Sprintf("GetUint8(%v, %v)", tt.args.key, tt.args.defaultUint8)) {
@@ -804,7 +804,7 @@ func TestXmlConfig_Get(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			value, err := x.Get(tt.args.key)
 			assert.Nil(t, err, "Get(%v)", tt.args.key)
@@ -844,7 +844,7 @@ func TestXmlConfig_GetTrimmedStrings(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			assert.Equalf(t, tt.want, x.GetTrimmedStrings(tt.args.key, tt.args.sep), "GetTrimmedStrings(%v, %v)", tt.args.key, tt.args.sep)
 		})
@@ -876,7 +876,7 @@ func TestXmlConfig_GetStrings(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				Configurations: tt.fields.configurations,
+				configurations: tt.fields.configurations,
 			}
 			assert.Equalf(t, tt.want, x.GetStrings(tt.args.key, tt.args.sep), "GetStrings(%v, %v)", tt.args.key, tt.args.sep)
 		})

@@ -62,7 +62,14 @@ func (p *property) Equal(o *property) bool {
 
 // XmlConfig TODO
 type XmlConfig struct {
-	Configurations map[string]*property
+	configurations map[string]*property
+}
+
+// NewXmlConfig TODO
+func NewXmlConfig() *XmlConfig {
+	return &XmlConfig{
+		configurations: make(map[string]*property),
+	}
 }
 
 func (x *XmlConfig) parseXmlData(data []byte) error {
@@ -71,7 +78,7 @@ func (x *XmlConfig) parseXmlData(data []byte) error {
 		return err
 	}
 	for _, property := range c.Properties {
-		x.Configurations[property.Name] = &property
+		x.configurations[property.Name] = &property
 	}
 	return nil
 }
@@ -79,7 +86,7 @@ func (x *XmlConfig) parseXmlData(data []byte) error {
 // buildXmlData 构建xml配置
 func (x *XmlConfig) buildXmlData() ([]byte, error) {
 	var properties []property
-	for _, property := range x.Configurations {
+	for _, property := range x.configurations {
 		properties = append(properties, *property)
 	}
 	c := &configuration{
