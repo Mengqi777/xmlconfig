@@ -93,14 +93,14 @@ func TestXmlConfig_ReadXmlFile(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: make(map[string]*property),
+				Configurations: make(map[string]*property),
 			}
 			err := x.ReadXmlFile(tt.args.path)
 			if !tt.wantErr(t, err, fmt.Sprintf("Write(%v)", x)) {
 				panic(err)
 			}
 			if tt.name == "正常路径" {
-				assert.Equal(t, newConfigurations(), x.configurations)
+				assert.Equal(t, newConfigurations(), x.Configurations)
 			}
 		})
 	}
@@ -132,14 +132,14 @@ func TestXmlConfig_Read(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: make(map[string]*property),
+				Configurations: make(map[string]*property),
 			}
 			data := make([]byte, len(stringCase))
 			err := x.Read(data, tt.args.r)
 			if !tt.wantErr(t, err, fmt.Sprintf("Read(%v)", tt.args.r)) {
 				panic(err)
 			}
-			assert.Equal(t, x.configurations, newConfigurations())
+			assert.Equal(t, x.Configurations, newConfigurations())
 		})
 	}
 }
@@ -167,7 +167,7 @@ func TestXmlConfig_Write(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: tt.fields.configurations,
+				Configurations: tt.fields.configurations,
 			}
 			w := &bytes.Buffer{}
 			err := x.Write(w)
@@ -205,7 +205,7 @@ func TestXmlConfig_WriteXmlFile(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: tt.fields.configurations,
+				Configurations: tt.fields.configurations,
 			}
 			err := x.WriteXmlFile(tt.args.xmlFilePath)
 			if !tt.wantErr(t, err, fmt.Sprintf("WriteXmlFile(%v)", tt.args.xmlFilePath)) {

@@ -58,7 +58,7 @@ func TestXmlConfig_SetBool(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: tt.fields.configurations,
+				Configurations: tt.fields.configurations,
 			}
 			x.SetBool(tt.args.key, tt.args.value)
 			value, _ := x.Get("name1")
@@ -101,7 +101,7 @@ func TestXmlConfig_SetIfUnset(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: tt.fields.configurations,
+				Configurations: tt.fields.configurations,
 			}
 			x.SetIfUnset(tt.args.key, tt.args.value)
 			if tt.name == "不存在则设置" {
@@ -144,7 +144,7 @@ func TestXmlConfig_SetInt(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: tt.fields.configurations,
+				Configurations: tt.fields.configurations,
 			}
 			x.SetInt(tt.args.key, tt.args.value)
 			value, _ := x.Get("name1")
@@ -181,7 +181,7 @@ func TestXmlConfig_SetString(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: tt.fields.configurations,
+				Configurations: tt.fields.configurations,
 			}
 			x.SetString(tt.args.key, tt.args.value)
 			value, _ := x.Get("name1")
@@ -218,7 +218,7 @@ func TestXmlConfig_SetUint(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: tt.fields.configurations,
+				Configurations: tt.fields.configurations,
 			}
 			x.SetUint(tt.args.key, tt.args.value)
 			value, _ := x.Get("name1")
@@ -251,7 +251,7 @@ func TestXmlConfig_unset(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			x := &XmlConfig{
-				configurations: tt.fields.configurations,
+				Configurations: tt.fields.configurations,
 			}
 			value, err := x.Get("name1")
 			assert.Nil(t, err)

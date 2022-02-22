@@ -62,7 +62,7 @@ func (p *property) Equal(o *property) bool {
 
 // XmlConfig TODO
 type XmlConfig struct {
-	configurations map[string]*property
+	Configurations map[string]*property
 }
 
 func (x *XmlConfig) parseXmlData(data []byte) error {
@@ -71,7 +71,7 @@ func (x *XmlConfig) parseXmlData(data []byte) error {
 		return err
 	}
 	for _, property := range c.Properties {
-		x.configurations[property.Name] = &property
+		x.Configurations[property.Name] = &property
 	}
 	return nil
 }
@@ -79,7 +79,7 @@ func (x *XmlConfig) parseXmlData(data []byte) error {
 // buildXmlData 构建xml配置
 func (x *XmlConfig) buildXmlData() ([]byte, error) {
 	var properties []property
-	for _, property := range x.configurations {
+	for _, property := range x.Configurations {
 		properties = append(properties, *property)
 	}
 	c := &configuration{
@@ -94,19 +94,6 @@ func (x *XmlConfig) buildXmlData() ([]byte, error) {
 	return data, nil
 }
 
-// ReadXmlFile XmlConfig 解析xml配置文件为XmlConfig，xml配置文件格式如下
-/**
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<configuration>
-    <property>
-        <name>name1</name>
-        <value>value1</value>
-        <tag>tag1,tag2</tag>
-        <description>demo2</description>
-    </property>
-</configuration>
-*/
 // ReadXmlFile 从xml文件中读取配置
 func (x *XmlConfig) ReadXmlFile(xmlFilePath string) error {
 	xmlFile, err := os.Open(xmlFilePath)

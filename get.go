@@ -29,7 +29,7 @@ import (
 
 // GetInt TODO
 func (x *XmlConfig) GetInt(key string, defaultInt int) (int, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		return strconv.Atoi(value.Value)
 	}
 	return defaultInt, nil
@@ -37,7 +37,7 @@ func (x *XmlConfig) GetInt(key string, defaultInt int) (int, error) {
 
 // GetInt8 TODO
 func (x *XmlConfig) GetInt8(key string, defaultInt8 int8) (int8, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseInt(value.Value, 10, 8)
 		return int8(i), err
 	}
@@ -46,7 +46,7 @@ func (x *XmlConfig) GetInt8(key string, defaultInt8 int8) (int8, error) {
 
 // GetInt16 TODO
 func (x *XmlConfig) GetInt16(key string, defaultInt16 int16) (int16, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseInt(value.Value, 10, 16)
 		return int16(i), err
 	}
@@ -55,7 +55,7 @@ func (x *XmlConfig) GetInt16(key string, defaultInt16 int16) (int16, error) {
 
 // GetInt32 TODO
 func (x *XmlConfig) GetInt32(key string, defaultInt32 int32) (int32, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseInt(value.Value, 10, 32)
 		return int32(i), err
 	}
@@ -65,7 +65,7 @@ func (x *XmlConfig) GetInt32(key string, defaultInt32 int32) (int32, error) {
 
 // GetInt64 TODO
 func (x *XmlConfig) GetInt64(key string, defaultInt64 int64) (int64, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseInt(value.Value, 10, 64)
 		return i, err
 	}
@@ -74,7 +74,7 @@ func (x *XmlConfig) GetInt64(key string, defaultInt64 int64) (int64, error) {
 
 // GetUint TODO
 func (x *XmlConfig) GetUint(key string, defaultUint uint) (uint, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseUint(value.Value, 10, 32)
 		return uint(i), err
 	}
@@ -83,7 +83,7 @@ func (x *XmlConfig) GetUint(key string, defaultUint uint) (uint, error) {
 
 // GetUint8 TODO
 func (x *XmlConfig) GetUint8(key string, defaultUint8 uint8) (uint8, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseUint(value.Value, 10, 8)
 		return uint8(i), err
 	}
@@ -92,7 +92,7 @@ func (x *XmlConfig) GetUint8(key string, defaultUint8 uint8) (uint8, error) {
 
 // GetUint16 TODO
 func (x *XmlConfig) GetUint16(key string, defaultUint16 uint16) (uint16, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseUint(value.Value, 10, 16)
 		return uint16(i), err
 	}
@@ -101,7 +101,7 @@ func (x *XmlConfig) GetUint16(key string, defaultUint16 uint16) (uint16, error) 
 
 // GetUint32 TODO
 func (x *XmlConfig) GetUint32(key string, defaultUint32 uint32) (uint32, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseUint(value.Value, 10, 32)
 		return uint32(i), err
 	}
@@ -110,7 +110,7 @@ func (x *XmlConfig) GetUint32(key string, defaultUint32 uint32) (uint32, error) 
 
 // GetUint64 TODO
 func (x *XmlConfig) GetUint64(key string, defaultUint64 uint64) (uint64, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		i, err := strconv.ParseUint(value.Value, 10, 64)
 		return i, err
 	}
@@ -119,7 +119,7 @@ func (x *XmlConfig) GetUint64(key string, defaultUint64 uint64) (uint64, error) 
 
 // GetBool TODO
 func (x *XmlConfig) GetBool(key string, defaultBool bool) bool {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		return strings.ToLower(strings.TrimSpace(value.Value)) == "true"
 	} else {
 		return defaultBool
@@ -128,7 +128,7 @@ func (x *XmlConfig) GetBool(key string, defaultBool bool) bool {
 
 // Get TODO
 func (x *XmlConfig) Get(key string) (string, error) {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		return value.Value, nil
 	}
 	return "", errors.New("not exist key: " + key)
@@ -136,7 +136,7 @@ func (x *XmlConfig) Get(key string) (string, error) {
 
 // GetString TODO
 func (x *XmlConfig) GetString(key string, defaultString string) string {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		return value.Value
 	} else {
 		return defaultString
@@ -145,7 +145,7 @@ func (x *XmlConfig) GetString(key string, defaultString string) string {
 
 // GetTrimmedString TODO
 func (x *XmlConfig) GetTrimmedString(key string, defaultString string) string {
-	if value, ok := x.configurations[key]; ok {
+	if value, ok := x.Configurations[key]; ok {
 		return strings.TrimSpace(value.Value)
 	} else {
 		return strings.TrimSpace(defaultString)
@@ -184,7 +184,7 @@ func (x *XmlConfig) GetTrimmedStrings(key, sep string) []string {
 // GetPropsWithPrefix TODO
 func (x *XmlConfig) GetPropsWithPrefix(prefix string) map[string]string {
 	props := make(map[string]string)
-	for key, value := range x.configurations {
+	for key, value := range x.Configurations {
 		if strings.HasPrefix(key, prefix) {
 			props[key] = value.Value
 		}
@@ -195,7 +195,7 @@ func (x *XmlConfig) GetPropsWithPrefix(prefix string) map[string]string {
 // GetConfigKeys TODO
 func (x *XmlConfig) GetConfigKeys() []string {
 	var keys []string
-	for k, _ := range x.configurations {
+	for k, _ := range x.Configurations {
 		keys = append(keys, k)
 	}
 	return keys
