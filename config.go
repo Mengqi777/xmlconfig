@@ -72,6 +72,15 @@ func NewXmlConfig() *XmlConfig {
 	}
 }
 
+// String TODO
+func (x *XmlConfig) String() string {
+	str := ""
+	for _, property := range x.configurations {
+		str += property.String() + "\n"
+	}
+	return str
+}
+
 func (x *XmlConfig) parseXmlData(data []byte) error {
 	var c configuration
 	if err := xml.Unmarshal(data, &c); err != nil {
