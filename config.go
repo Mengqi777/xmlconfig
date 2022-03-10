@@ -46,12 +46,12 @@ type property struct {
 
 // String TODO
 func (p *property) String() string {
-	f := "<property>" +
-		"    <name>%s</name>" +
-		"    <value>%s</value>" +
-		"    <tag>%s</tag>" +
-		"    <description>%s</description>" +
-		"</property>"
+	f := "<property>\n" +
+		"    <name>%s</name>\n" +
+		"    <value>%s</value>\n" +
+		"    <tag>%s</tag>\n" +
+		"    <description>%s</description>\n" +
+		"</property>\n"
 	return fmt.Sprintf(f, p.Name, p.Value, p.Tag, p.Description)
 }
 
@@ -76,24 +76,37 @@ func NewXmlConfig() *XmlConfig {
 func (x *XmlConfig) String() string {
 	str := ""
 	for _, property := range x.configurations {
-		str += property.String() + "\n"
+		str += property.String()
 	}
 	return str
 }
 
-func (x *XmlConfig) parseXmlData(data []byte) error {
-	var c configuration
-	if err := xml.Unmarshal(data, &c); err != nil {
+// ParseXmlData TODO
+func (x *XmlConfig) ParseXmlData(data []byte) error {
+	c := &configuration{
+		XMLName:    xml.Name{},
+		Properties: make([]property, 0),
+	}
+	if err := xml.Unmarshal(data, c); err != nil {
 		return err
 	}
-	for _, property := range c.Properties {
-		x.configurations[property.Name] = &property
+	for _, p := range c.Properties {
+		x.configurations[p.Name] = &property{
+			XMLName: xml.Name{
+				Space: p.XMLName.Space,
+				Local: p.XMLName.Local,
+			},
+			Name:        p.Name,
+			Value:       p.Value,
+			Tag:         p.Tag,
+			Description: p.Description,
+		}
 	}
 	return nil
 }
 
-// buildXmlData 构建xml配置
-func (x *XmlConfig) buildXmlData() ([]byte, error) {
+// BuildXmlData 构建xml配置
+func (x *XmlConfig) BuildXmlData() ([]byte, error) {
 	var properties []property
 	for _, property := range x.configurations {
 		properties = append(properties, *property)
@@ -121,7 +134,7 @@ func (x *XmlConfig) ReadXmlFile(xmlFilePath string) error {
 	if err != nil {
 		return err
 	}
-	return x.parseXmlData(data)
+	return x.ParseXmlData(data)
 }
 
 // Read 从IO中读取配置
@@ -129,12 +142,12 @@ func (x *XmlConfig) Read(data []byte, r io.Reader) error {
 	if _, err := r.Read(data); err != nil {
 		return err
 	}
-	return x.parseXmlData(data)
+	return x.ParseXmlData(data)
 }
 
 // WriteXmlFile 将配置信息写入xml文件
 func (x *XmlConfig) WriteXmlFile(xmlFilePath string) error {
-	data, err := x.buildXmlData()
+	data, err := x.BuildXmlData()
 	if err != nil {
 		return err
 	}
@@ -143,7 +156,7 @@ func (x *XmlConfig) WriteXmlFile(xmlFilePath string) error {
 
 // Write  将配置信息写入IO
 func (x *XmlConfig) Write(w io.Writer) error {
-	data, err := x.buildXmlData()
+	data, err := x.BuildXmlData()
 	if err != nil {
 		return err
 	}
